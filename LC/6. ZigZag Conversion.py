@@ -10,6 +10,22 @@ s = "ABC"
 a = convert(s, 2)
 print(a)
 
+def convert1(s, numRows):
+    if numRows <= 1:
+        return s
+    
+    new_s = ""
+    step = 2*(numRows-1)
+
+    for row in range(numRows):
+        for j in range(row, len(s), step):
+            new_s += s[j]
+            if row == 0 or row == numRows - 1:
+                continue;
+            slash = j + step - 2 * row
+            if slash < len(s):
+                new_s += s[slash]
+    return new_s
 
 
 #OMG, I find the format is wrong after WA several times. 
