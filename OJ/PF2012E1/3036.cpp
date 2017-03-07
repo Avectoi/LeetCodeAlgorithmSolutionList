@@ -17,7 +17,7 @@ int main()
 			x1 = (a * x1 + b) % m;
 			
 		}
-		cout << x1 << endl; 
+		cout << x1 << endl;
 
 	}
 
