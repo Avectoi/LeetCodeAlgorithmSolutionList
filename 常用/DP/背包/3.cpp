@@ -1,37 +1,37 @@
-//------------------------------------
-// Created by Carson Bright
-// The best, or nothing.
-//------------------------------------
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
-// HDOJ 2191
+
+int p;
+int q;
+int n;
+double pp,qq;
 
 
-int nCases;
-int n, m;
-int p[105], h[105], c[105];
-int res[105];
+double func(int n)
+{
+	if (n == 1)
+	{
+		double tmp1;
+		tmp1 = ((1 - p/100.0) + q/100.0)>1?1:(1 - p/100.0) + q/100.0;
+		return p/100.0 + (1-p/100.0) * tmp1;
+	}
+	else
+	{
+		double tmp2;
+		tmp2 = ((1-p/pow(2,n-1)/100.0)+q/100.0)>1?1:((1-p/pow(2,n-1)/100.0)+q/100.0);
+		return (n-1)*2   * p/(pow(2,n-1))/100.0*func(n-1) + ((n-1) * 2+1)   * tmp2*func(n-1);
+	}
+}
+
 
 int main()
 {
-    //freopen("input.txt", "r", stdin);
 
-
-    memset(res, 0, sizeof(res));
-    cin >> n >> m;
-    for(int i=0; i<m; ++i)
-    	cin >> p[i] >> h[i] >> c[i];
-        // scanf("%d %d %d", &p[i], &h[i], &c[i]);
-
-
-    for(int i=0; i<m; ++i)
-        for(int j=0; j<c[i]; ++j)
-            for(int k=n; k>=p[i]; --k)
-                if(res[k] < res[k-p[i]]+h[i])
-                    res[k] = res[k-p[i]] + h[i];
-
-    printf("%d\n", res[n]);
-
-
-    return 0;
+	cin >> p >> q >> n;
+	// p=50;q=75;n=2;
+	// func(n);
+	cout << func(n);
+	cout << endl;
+	return 0;
 }
